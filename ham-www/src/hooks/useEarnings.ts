@@ -4,7 +4,7 @@ import BigNumber from 'bignumber.js'
 import { useWallet } from 'use-wallet'
 import { Contract } from "web3-eth-contract"
 
-import { getEarned } from '../yamUtils'
+import { getEarned } from '../hamUtils'
 import useHam from './useHam'
 
 const useEarnings = (pool: Contract) => {

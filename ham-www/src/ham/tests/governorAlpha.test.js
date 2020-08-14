@@ -37,7 +37,7 @@ const oneEther = 10 ** 18;
 const EIP712 = require('./EIP712');
 
 describe("governorAlpha#castVote/2", () => {
-  let name = "YAM";
+  let name = "HAM";
   let chainId = 1001;
   let snapshotId;
   let user;
@@ -67,7 +67,7 @@ describe("governorAlpha#castVote/2", () => {
     a3 = accounts[4];
     a4 = accounts[5];
     let one_hundred = yam.toBigN(100).times(yam.toBigN(10**18));
-    // await yam.contracts.yam.methods.transfer(guy, one_hundred.toString()).send({from: user});
+    // await ham.contracts.ham.methods.transfer(guy, one_hundred.toString()).send({from: user});
 
     snapshotId = await yam.testing.snapshot();
 
@@ -173,7 +173,7 @@ describe("governorAlpha#castVote/2", () => {
              },
              primaryType: 'Ballot',
              domain: {
-                 name: 'YAM Governor Alpha',
+                 name: 'HAM Governor Alpha',
                  chainId: 1,
                  verifyingContract: yam.contracts.gov.options.address,
              },
@@ -213,7 +213,7 @@ describe("governorAlpha#castVote/2", () => {
              },
              primaryType: 'Ballot',
              domain: {
-                 name: 'YAM Governor Alpha',
+                 name: 'HAM Governor Alpha',
                  chainId: 1,
                  verifyingContract: "0x47Ff9D00cDAE31B4E09DEf8081bb3a1282e8061D",
              },

@@ -6,4 +6,4 @@ const useHam = () => {
   return yam
 }
 
-export default useYam
+export default useHam

@@ -7,7 +7,7 @@ import Page from '../../components/Page'
 import PageHeader from '../../components/PageHeader'
 import Spacer from '../../components/Spacer'
 
-import useYam from '../../hooks/useYam'
+import useHam from '../../hooks/useHam'
 
 import Rebase from './components/Rebase'
 import Stats from './components/Stats'
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
 
   const { account } = useWallet()
 
-  const yam = useYam()
+  const yam = useHam()
   const [{
     circSupply,
     curPrice,
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <PageHeader icon="⚠️" subtitle="Remove liquidity from the YAM / YCRV Uniswap pool" title="Warning" />
+      <PageHeader icon="⚠️" subtitle="Remove liquidity from the HAM / YCRV Uniswap pool" title="Warning" />
       <div style={{
         margin: '-24px auto 48px'
       }}>

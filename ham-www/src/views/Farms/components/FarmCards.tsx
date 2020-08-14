@@ -12,7 +12,7 @@ import useFarms from '../../../hooks/useFarms'
 
 import { Farm } from '../../../contexts/Farms'
 
-import { getPoolStartTime } from '../../../yamUtils'
+import { getPoolStartTime } from '../../../hamUtils'
 
 const FarmCards: React.FC = () => {
   const [farms] = useFarms()

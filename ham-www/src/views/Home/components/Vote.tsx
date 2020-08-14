@@ -19,7 +19,7 @@ import {
   getDelegatedBalance,
   getScalingFactor,
   getVotes,
-} from '../../../yamUtils'
+} from '../../../hamUtils'
 
 interface VoteProps {
 }

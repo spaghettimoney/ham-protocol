@@ -1,5 +1,5 @@
 import {
-  Yam
+  Ham
 } from "../index.js";
 import * as Types from "../lib/types.js";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../lib/Helpers.js"
 
 
-export const yam = new Yam(
+export const yam = new Ham(
   "http://localhost:8545/",
   // "http://127.0.0.1:9545/",
   "1001",

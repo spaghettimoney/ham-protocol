@@ -1,5 +1,5 @@
 import {
-  Yam
+  Ham
 } from "../index.js";
 import * as Types from "../lib/types.js";
 import {
@@ -11,7 +11,7 @@ import {
 } from "../lib/Helpers.js"
 
 
-export const yam = new Yam(
+export const yam = new Ham(
   "http://localhost:8545/",
   // "http://127.0.0.1:9545/",
   "1001",
@@ -190,7 +190,7 @@ describe("Distribution", () => {
       let rpt = await yam.contracts.eth_pool.methods.rewardPerToken().call();
       //console.log(earned, rr, rpt);
       await yam.testing.increaseTime(86400);
-      // await yam.testing.mineBlock();
+      // await ham.testing.mineBlock();
 
       earned = await yam.contracts.eth_pool.methods.earned(user).call();
 
@@ -207,9 +207,9 @@ describe("Distribution", () => {
 
       let yam_bal = await yam.contracts.yam.methods.balanceOf(user).call()
 
-      console.log("yam bal", yam_bal)
+      console.log("ham bal", yam_bal)
       // start rebasing
-        //console.log("approve yam")
+        //console.log("approve ham")
         await yam.contracts.yam.methods.approve(
           yam.contracts.uni_router.options.address,
           -1
@@ -299,7 +299,7 @@ describe("Distribution", () => {
 
 
         expect(yam.toBigN(yam_bal).toNumber()).toBeGreaterThan(0)
-        console.log("yam bal after staking in pool 2", yam_bal);
+        console.log("ham bal after staking in pool 2", yam_bal);
     });
   });
 
@@ -337,7 +337,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.ampl_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.ampl_pool.methods.earned(user).call();
 
@@ -357,16 +357,16 @@ describe("Distribution", () => {
 
         //console.log(j.events)
 
-        // let k = await yam.contracts.eth_pool.methods.exit().send({
+        // let k = await ham.contracts.eth_pool.methods.exit().send({
         //   from: user,
         //   gas: 300000
         // });
         //
         // //console.log(k.events)
 
-        // weth_bal = await yam.contracts.weth.methods.balanceOf(user).call()
+        // weth_bal = await ham.contracts.weth.methods.balanceOf(user).call()
 
-        // expect(weth_bal).toBe(yam.toBigN(2000).times(yam.toBigN(10**18)).toString())
+        // expect(weth_bal).toBe(ham.toBigN(2000).times(ham.toBigN(10**18)).toString())
 
         let ampl_bal = await yam.contracts.UNIAmpl.methods.balanceOf(user).call()
 
@@ -415,7 +415,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.eth_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.eth_pool.methods.earned(user).call();
 
@@ -483,7 +483,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.eth_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(125000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.eth_pool.methods.earned(user).call();
 
@@ -503,9 +503,9 @@ describe("Distribution", () => {
 
         let yam_bal = await yam.contracts.yam.methods.balanceOf(user).call()
 
-        console.log("yam bal", yam_bal)
+        console.log("ham bal", yam_bal)
         // start rebasing
-          //console.log("approve yam")
+          //console.log("approve ham")
           await yam.contracts.yam.methods.approve(
             yam.contracts.uni_router.options.address,
             -1
@@ -737,7 +737,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.eth_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(125000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.eth_pool.methods.earned(user).call();
 
@@ -757,9 +757,9 @@ describe("Distribution", () => {
 
         let yam_bal = await yam.contracts.yam.methods.balanceOf(user).call()
 
-        console.log("yam bal", yam_bal)
+        console.log("ham bal", yam_bal)
         // start rebasing
-          //console.log("approve yam")
+          //console.log("approve ham")
           await yam.contracts.yam.methods.approve(
             yam.contracts.uni_router.options.address,
             -1
@@ -988,7 +988,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.yfi_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.yfi_pool.methods.earned(user).call();
 
@@ -1054,7 +1054,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.comp_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.comp_pool.methods.earned(user).call();
 
@@ -1122,7 +1122,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.lend_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.lend_pool.methods.earned(user).call();
 
@@ -1191,7 +1191,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.link_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.link_pool.methods.earned(user).call();
 
@@ -1260,7 +1260,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.mkr_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.mkr_pool.methods.earned(user).call();
 
@@ -1337,7 +1337,7 @@ describe("Distribution", () => {
         let rpt = await yam.contracts.snx_pool.methods.rewardPerToken().call();
         //console.log(earned, rr, rpt);
         await yam.testing.increaseTime(625000 + 100);
-        // await yam.testing.mineBlock();
+        // await ham.testing.mineBlock();
 
         earned = await yam.contracts.snx_pool.methods.earned(user).call();
 

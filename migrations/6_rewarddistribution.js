@@ -5,29 +5,29 @@ var fs = require('fs')
 
 // Protocol
 // deployed second
-const YAMImplementation = artifacts.require("YAMDelegate");
-const YAMProxy = artifacts.require("YAMDelegator");
+const HAMImplementation = artifacts.require("HAMDelegate");
+const HAMProxy = artifacts.require("HAMDelegator");
 
 // deployed third
-const YAMReserves = artifacts.require("YAMReserves");
-const YAMRebaser = artifacts.require("YAMRebaser");
+const HAMReserves = artifacts.require("HAMReserves");
+const HAMRebaser = artifacts.require("HAMRebaser");
 
 const Gov = artifacts.require("GovernorAlpha");
 const Timelock = artifacts.require("Timelock");
 
 // deployed fourth
-const YAM_ETHPool = artifacts.require("YAMETHPool");
-const YAM_uAMPLPool = artifacts.require("YAMAMPLPool");
-const YAM_YFIPool = artifacts.require("YAMYFIPool");
-const YAM_LINKPool = artifacts.require("YAMLINKPool");
-const YAM_MKRPool = artifacts.require("YAMMKRPool");
-const YAM_LENDPool = artifacts.require("YAMLENDPool");
-const YAM_COMPPool = artifacts.require("YAMCOMPPool");
-const YAM_SNXPool = artifacts.require("YAMSNXPool");
+const HAM_ETHPool = artifacts.require("HAMETHPool");
+const HAM_uAMPLPool = artifacts.require("HAMAMPLPool");
+const HAM_YFIPool = artifacts.require("HAMYFIPool");
+const HAM_LINKPool = artifacts.require("HAMLINKPool");
+const HAM_MKRPool = artifacts.require("HAMMKRPool");
+const HAM_LENDPool = artifacts.require("HAMLENDPool");
+const HAM_COMPPool = artifacts.require("HAMCOMPPool");
+const HAM_SNXPool = artifacts.require("HAMSNXPool");
 
 
 // deployed fifth
-const YAMIncentivizer = artifacts.require("YAMIncentivizer");
+const HAMIncentivizer = artifacts.require("HAMIncentivizer");
 
 // ============ Main Migration ============
 
@@ -46,20 +46,20 @@ module.exports = migration;
 
 async function deployDistribution(deployer, network, accounts) {
   console.log(network)
-  let yam = await YAMProxy.deployed();
-  let yReserves = await YAMReserves.deployed()
-  let yRebaser = await YAMRebaser.deployed()
+  let yam = await HAMProxy.deployed();
+  let yReserves = await HAMReserves.deployed()
+  let yRebaser = await HAMRebaser.deployed()
   let tl = await Timelock.deployed();
   let gov = await Gov.deployed();
   if (network != "test") {
 
-    let eth_pool = new web3.eth.Contract(YAM_ETHPool.abi, YAM_ETHPool.address);
-    let ampl_pool = new web3.eth.Contract(YAM_uAMPLPool.abi, YAM_uAMPLPool.address);
-    let yfi_pool = new web3.eth.Contract(YAM_YFIPool.abi, YAM_YFIPool.address);
-    let lend_pool = new web3.eth.Contract(YAM_LENDPool.abi, YAM_LENDPool.address);
-    let mkr_pool = new web3.eth.Contract(YAM_MKRPool.abi, YAM_MKRPool.address);
-    let snx_pool = new web3.eth.Contract(YAM_SNXPool.abi, YAM_SNXPool.address);
-    let comp_pool = new web3.eth.Contract(YAM_COMPPool.abi, YAM_COMPPool.address);
+    let eth_pool = new web3.eth.Contract(HAM_ETHPool.abi, HAM_ETHPool.address);
+    let ampl_pool = new web3.eth.Contract(HAM_uAMPLPool.abi, HAM_uAMPLPool.address);
+    let yfi_pool = new web3.eth.Contract(HAM_YFIPool.abi, HAM_YFIPool.address);
+    let lend_pool = new web3.eth.Contract(HAM_LENDPool.abi, HAM_LENDPool.address);
+    let mkr_pool = new web3.eth.Contract(HAM_MKRPool.abi, HAM_MKRPool.address);
+    let snx_pool = new web3.eth.Contract(HAM_SNXPool.abi, HAM_SNXPool.address);
+    let comp_pool = new web3.eth.Contract(HAM_COMPPool.abi, YAM_COMPPool.address);
     let link_pool = new web3.eth.Contract(YAM_LINKPool.abi, YAM_LINKPool.address);
     let ycrv_pool = new web3.eth.Contract(YAMIncentivizer.abi, YAMIncentivizer.address);
 

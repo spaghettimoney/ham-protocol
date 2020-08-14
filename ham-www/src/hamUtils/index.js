@@ -119,7 +119,7 @@ export const getCirculatingSupply = async (yam) => {
   let starttimePool2 = yam.toBigN(await yam.contracts.ycrv_pool.methods.starttime().call()).toNumber();
   timePassed = now["timestamp"] - starttime;
   let pool2Hams = yam.toBigN(timePassed * 1500000 / 625000); // yams from second pool. note: just accounts for first week
-  let circulating = pool2Yams.plus(yamsDistributed).times(scalingFactor).div(10**36).toFixed(2)
+  let circulating = pool2Hams.plus(yamsDistributed).times(scalingFactor).div(10**36).toFixed(2)
   return circulating
 }
 

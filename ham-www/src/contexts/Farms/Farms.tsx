@@ -4,7 +4,7 @@ import { Contract } from 'web3-eth-contract'
 
 import { yam as yamAddress } from '../../constants/tokenAddresses'
 import useHam from '../../hooks/useHam'
-import { getPoolContracts } from '../../yamUtils'
+import { getPoolContracts } from '../../hamUtils'
 
 import Context from './context'
 import { Farm } from './types'

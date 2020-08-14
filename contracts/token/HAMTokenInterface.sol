@@ -14,7 +14,7 @@ contract YAMTokenInterface is YAMTokenStorage, YAMGovernanceStorage {
     /**
      * @notice Event emitted when tokens are rebased
      */
-    event Rebase(uint256 epoch, uint256 prevYamsScalingFactor, uint256 newYamsScalingFactor);
+    event Rebase(uint256 epoch, uint256 prevHamsScalingFactor, uint256 newHamsScalingFactor);
 
     /*** Gov Events ***/
 

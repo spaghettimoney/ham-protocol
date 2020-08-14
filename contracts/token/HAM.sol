@@ -1,9 +1,9 @@
 pragma solidity 0.5.17;
 
-/* import "./YAMTokenInterface.sol"; */
-import "./YAMGovernance.sol";
+/* import "./HAMTokenInterface.sol"; */
+import "./HAMGovernance.sol";
 
-contract YAMToken is YAMGovernanceToken {
+contract HAMToken is HAMGovernanceToken {
     // Modifiers
     modifier onlyGov() {
         require(msg.sender == gov);
@@ -343,7 +343,7 @@ contract YAMToken is YAMGovernanceToken {
     }
 }
 
-contract YAM is YAMToken {
+contract HAM is HAMToken {
     /**
      * @notice Initialize the new money market
      * @param name_ ERC-20 name of this token
