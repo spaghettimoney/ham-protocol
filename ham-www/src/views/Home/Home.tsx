@@ -13,8 +13,12 @@ import Stats from './components/Stats'
 import { OverviewData } from './types'
 import { getStats } from './utils'
 
-const Home: React.FC = () => {
+interface HomeProps {
+  toggleTheme: () => void
+  theme: string
+}
 
+const Home: React.FC<HomeProps> = ({ theme, toggleTheme }) => {
   const ham = useHam()
   const [{
     curPrice,
@@ -35,7 +39,7 @@ const Home: React.FC = () => {
   }, [fetchStats, ham])
 
   return (
-    <Page>
+    <Page toggleTheme={toggleTheme} theme={theme}>
       <PageHeader icon="🥓" subtitle="Never fear, the bacon is here! Enjoy the harvest!" title="Friendly reminder" />
       <div style={{
         margin: '-24px auto 48px'
@@ -76,7 +80,7 @@ const StyledSpacer = styled.div`
 const StyledLink = styled.a`
   font-weight: 700l
   text-decoration: none;
-  color: ${props => props.theme.color.primary.main};
+  color: ${props => props.theme.color[500]};
 `
 
 export default Home
