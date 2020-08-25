@@ -15,7 +15,7 @@ const Gov = artifacts.require("GovernorAlpha");
 const Timelock = artifacts.require("Timelock");
 
 // Deployed fourth.
-let contractArtifacts = tokens.Map((tokenName) => artifacts.require(contractName(tokenName)))
+let contractArtifacts = tokens.map((tokenName) => artifacts.require(contractName(tokenName)))
 
 // deployed fifth
 const HAMIncentivizer = artifacts.require("HAMIncentivizer");
@@ -44,21 +44,21 @@ async function deployDistribution(deployer, network, accounts) {
   let gov = await Gov.deployed();
   if (network != "test") {
     await Promise.all([
-      ...contractArtifacts.Map(async (contract) => {
+      ...contractArtifacts.map(async (contract) => {
         await deployer.deploy(contract);
       }),
       await deployer.deploy(HAMIncentivizer),
     ]
   );
 
-    let poolContracts = contractArtifacts.Map(artifact => new web3.eth.Contract(artifact.abi, artifact.address))
+    let poolContracts = contractArtifacts.map(artifact => new web3.eth.Contract(artifact.abi, artifact.address))
     poolContracts = Object.assign(poolContracts, tokens)
 
     let ycrv_pool = new web3.eth.Contract(HAMIncentivizer.abi, HAMIncentivizer.address);
 
     console.log("setting distributor");
     await Promise.all([
-        ...Object.values(poolContracts).Map(contract => contract.methods.setRewardDistribution(accounts[0]).send({from: accounts[0], gas: 100000})),
+        ...Object.values(poolContracts).map(contract => contract.methods.setRewardDistribution(accounts[0]).send({from: accounts[0], gas: 100000})),
         ycrv_pool.methods.setRewardDistribution(accounts[0]).send({from: accounts[0], gas: 100000}),
     ]);
 
@@ -69,23 +69,23 @@ async function deployDistribution(deployer, network, accounts) {
     console.log("eth");
     await Promise.all(
         [
-            ...tokens.Map((tokenName) => ham.transfer(poolContracts[tokenName].address, amountsPerPool[tokenName].toString())),
+            ...tokens.map((tokenName) => ham.transfer(poolContracts[tokenName].address, amountsPerPool[tokenName].toString())),
             ham._setIncentivizer(HAMIncentivizer.address),
         ],
     );
 
     await Promise.all([
-      ...tokens.Map((tokenName) => poolContracts[tokenName].methods.notifyRewardAmount(amountsPerPool[tokenName].toString()).send({from:accounts[0]})),
+      ...tokens.map((tokenName) => poolContracts[tokenName].methods.notifyRewardAmount(amountsPerPool[tokenName].toString()).send({from:accounts[0]})),
       // incentives is a minter and prepopulates itself.
       ycrv_pool.methods.notifyRewardAmount("0").send({from: accounts[0], gas: 500000}),
     ]);
 
     await Promise.all([
-      ...Object.values(poolContracts).Map(contract => contract.methods.setRewardDistribution(Timelock.address).send({from: accounts[0], gas: 100000})),
+      ...Object.values(poolContracts).map(contract => contract.methods.setRewardDistribution(Timelock.address).send({from: accounts[0], gas: 100000})),
       ycrv_pool.methods.setRewardDistribution(Timelock.address).send({from: accounts[0], gas: 100000}),
     ]);
     await Promise.all([
-      ...Object.values(poolContracts).Map(contract => contract.methods.transferOwnership(Timelock.address).send({from: accounts[0], gas: 100000})),
+      ...Object.values(poolContracts).map(contract => contract.methods.transferOwnership(Timelock.address).send({from: accounts[0], gas: 100000})),
       ycrv_pool.methods.transferOwnership(Timelock.address).send({from: accounts[0], gas: 100000}),
     ]);
   }
