@@ -44,15 +44,16 @@ async function deployDistribution(deployer, network, accounts) {
   let gov = await Gov.deployed();
   if (network != "test") {
     await Promise.all([
-      ...contractArtifacts.map(async (contract) => {
-        await deployer.deploy(contract);
-      }),
+      ...contractArtifacts.map(async (contract) => await deployer.deploy(contract)),
       await deployer.deploy(HAMIncentivizer),
     ]
   );
 
-    let poolContracts = contractArtifacts.map(artifact => new web3.eth.Contract(artifact.abi, artifact.address))
-    poolContracts = Object.assign(poolContracts, tokens)
+    let poolContractsArray = contractArtifacts.map(artifact => new web3.eth.Contract(artifact.abi, artifact.address))
+    let poolContracts = {}
+    for (let i = 0; i < poolContractsArray.length; i++) {
+      poolContracts[tokens[i]] = poolContractsArray[i]
+    }
 
     let ycrv_pool = new web3.eth.Contract(HAMIncentivizer.abi, HAMIncentivizer.address);
 
