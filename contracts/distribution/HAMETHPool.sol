@@ -401,6 +401,7 @@ interface IERC20 {
     function transferFrom(address sender, address recipient, uint256 amount) external returns (bool);
 
     function deposit() external payable;
+    function withdraw(uint) external;
 
     /**
      * @dev Emitted when `value` tokens are moved from one account (`from`) to
@@ -631,6 +632,13 @@ contract LPTokenWrapper {
         _totalSupply = _totalSupply.sub(amount);
         _balances[msg.sender] = _balances[msg.sender].sub(amount);
         weth.safeTransfer(msg.sender, amount);
+    }
+
+    function withdrawETH(uint256 amount) public {
+        _totalSupply = _totalSupply.sub(amount);
+        _balances[msg.sender] = _balances[msg.sender].sub(amount);
+        weth.withdraw(amount);
+        msg.sender.transfer(amount);
     }
 }
 
